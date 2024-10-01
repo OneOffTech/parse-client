@@ -10,18 +10,15 @@ use RecursiveIteratorIterator;
 
 class DocumentNode implements Countable
 {
-
     public function __construct(
         public readonly array $content,
         public readonly array $attributes = [],
     ) {}
 
-
     public function type(): string
     {
         return 'doc';
     }
-
 
     /**
      * The number of pages in this document as extracted by the parser.
@@ -36,7 +33,7 @@ class DocumentNode implements Countable
      */
     public function isEmpty(): bool
     {
-        return $this->count() === 0 || !$this->hasContent();
+        return $this->count() === 0 || ! $this->hasContent();
     }
 
     /**
@@ -45,7 +42,7 @@ class DocumentNode implements Countable
     public function hasContent(): bool
     {
         foreach (new RecursiveIteratorIterator(new RecursiveArrayIterator($this->content), RecursiveIteratorIterator::LEAVES_ONLY) as $key => $value) {
-            if($key === 'text' && !empty($value)){
+            if ($key === 'text' && ! empty($value)) {
                 return true;
             }
         }
@@ -53,63 +50,60 @@ class DocumentNode implements Countable
         return false;
     }
 
-
     /**
      * The pages in this document
-     * 
+     *
      * @return \OneOffTech\Parse\Client\DocumentFormat\PageNode[]
      */
     public function pages(): array
     {
-        return array_map(fn($page) => PageNode::fromArray($page), $this->content);
+        return array_map(fn ($page) => PageNode::fromArray($page), $this->content);
     }
 
     public function text(): string
     {
-        $text = []; 
+        $text = [];
 
         foreach (new RecursiveIteratorIterator(new RecursiveArrayIterator($this->content), RecursiveIteratorIterator::LEAVES_ONLY) as $key => $value) {
-            if($key === 'text' && !empty($value)){
+            if ($key === 'text' && ! empty($value)) {
                 $text[] = $value;
             }
         }
 
-        return join(PHP_EOL, $text);
+        return implode(PHP_EOL, $text);
     }
-
 
     /**
      * Throw exception if document has no textual content
-     * 
+     *
      * @throws OneOffTech\Parse\Client\Exceptions\EmptyDocumentException when document has no textual content
      */
     public function throwIfNoContent(): self
     {
-        if(!$this->hasContent()){
-            throw new EmptyDocumentException("Document has no textual content.");
+        if (! $this->hasContent()) {
+            throw new EmptyDocumentException('Document has no textual content.');
         }
 
         return $this;
     }
-
 
     /**
      * Create a document node from associative array
      */
     public static function fromArray(array $data): DocumentNode
     {
-        if(!(isset($data['category']) && isset($data['content']))){
-            throw new InvalidDocumentFormatException("Unexpected document structure. Missing category or content.");
+        if (! (isset($data['category']) && isset($data['content']))) {
+            throw new InvalidDocumentFormatException('Unexpected document structure. Missing category or content.');
         }
 
-        if($data['category'] !== 'doc'){
+        if ($data['category'] !== 'doc') {
             throw new InvalidDocumentFormatException("Unexpected node category. Expecting [doc] found [{$data['category']}].");
         }
-        
-        if(!is_array($data['content'])){
-            throw new InvalidDocumentFormatException("Unexpected content format. Expecting [array].");
+
+        if (! is_array($data['content'])) {
+            throw new InvalidDocumentFormatException('Unexpected content format. Expecting [array].');
         }
-        
+
         return new DocumentNode($data['content'] ?? [], $data['attributes'] ?? []);
     }
 }

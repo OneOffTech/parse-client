@@ -4,7 +4,4 @@ namespace OneOffTech\Parse\Client\Exceptions;
 
 use Exception;
 
-class InvalidDocumentFormatException extends Exception
-{
-    
-}
+class InvalidDocumentFormatException extends Exception {}

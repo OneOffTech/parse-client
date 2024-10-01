@@ -28,14 +28,14 @@ test('can parse a pdf using pdfact', function () {
 
     expect($document->document()->isEmpty())
         ->toBeFalse();
-    
+
     expect($document->document()->hasContent())
         ->toBeTrue();
 
     expect($document->document()->text())
         ->toBeString()->toContain('This is the title of the document');
 
-    $pages = $document->pages(); 
+    $pages = $document->pages();
 
     expect($pages)
         ->toHaveCount(2);
@@ -46,13 +46,13 @@ test('can parse a pdf using pdfact', function () {
     expect($pages[0]->text())
         ->toBeString()
         ->toEqual('Type of document / Offer / Contract / Report'.PHP_EOL.'This is the title of the document, it'.PHP_EOL.'can use multiple lines and grow a bit'.PHP_EOL.'Subtitle of the document'.PHP_EOL.'OneOff-Tech UG');
-    
+
     expect($pages[0]->number())
         ->toEqual(1);
-    
+
     expect($pages[1]->number())
         ->toEqual(2);
-    
+
 });
 
 test('can parse a pdf using pymupdf', function () {
@@ -71,13 +71,13 @@ test('can parse a pdf using pymupdf', function () {
 
     expect($document->document()->isEmpty())
         ->toBeFalse();
-    
+
     expect($document->document()->hasContent())
         ->toBeTrue();
 
     expect($document->pages())
         ->toHaveCount(2);
-    
+
     expect($document->document()->text())
         ->toBeString()->toContain('This is the title of the document');
 
@@ -99,7 +99,7 @@ test('can parse an empty pdf', function () {
 
     expect($document->document()->isEmpty())
         ->toBeTrue();
-    
+
     expect($document->document()->hasContent())
         ->toBeFalse();
 

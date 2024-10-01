@@ -3,17 +3,18 @@
 namespace OneOffTech\Parse\Client\Dto;
 
 use Countable;
-use Saloon\Traits\Responses\HasResponse;
-use Saloon\Contracts\DataObjects\WithResponse;
 use OneOffTech\Parse\Client\DocumentFormat\DocumentNode;
+use Saloon\Contracts\DataObjects\WithResponse;
+use Saloon\Traits\Responses\HasResponse;
 
-class DocumentDto implements WithResponse, Countable
+class DocumentDto implements Countable, WithResponse
 {
     use HasResponse;
 
     protected readonly DocumentNode $raw;
 
-    public function __construct(array $data) {
+    public function __construct(array $data)
+    {
         $this->raw = DocumentNode::fromArray($data);
     }
 
@@ -29,7 +30,7 @@ class DocumentDto implements WithResponse, Countable
     {
         return $this->raw->count();
     }
-    
+
     /**
      * Get the underlying document node
      */
