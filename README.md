@@ -1,7 +1,7 @@
-# This is my package oneofftech-parse-client
+# OneOffTech Parse client
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/oneofftech/oneofftech-parse-client.svg?style=flat-square)](https://packagist.org/packages/oneofftech/oneofftech-parse-client)
-[![Tests](https://img.shields.io/github/actions/workflow/status/oneofftech/oneofftech-parse-client/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/oneofftech/oneofftech-parse-client/actions/workflows/run-tests.yml)
+[![Tests](https://github.com/OneOffTech/parse-client/actions/workflows/run-tests.yml/badge.svg)](https://github.com/OneOffTech/parse-client/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/oneofftech/oneofftech-parse-client.svg?style=flat-square)](https://packagist.org/packages/oneofftech/oneofftech-parse-client)
 
 Parse client is a library to interact with [OneOffTech Parse](https://parse.oneofftech.de) service. OneOffTech Parse is designed to extract text from PDF files preserving the [structure of the document](#document-structure) to improve interaction with Large Language Models (LLMs).
@@ -9,7 +9,7 @@ Parse client is a library to interact with [OneOffTech Parse](https://parse.oneo
 OneOffTech Parse is based on [PDF Text extractor](https://github.com/data-house/pdf-text-extractor). The client is suitable to connect to self-hosted versions of the [PDF Text extractor](https://github.com/data-house/pdf-text-extractor).
 
 
-> [!INFO]  
+> [!NOTE]
 > The Parse client package is under development and is not ready for production use.
 
 
