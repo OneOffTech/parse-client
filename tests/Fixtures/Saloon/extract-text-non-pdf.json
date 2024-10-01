@@ -1,0 +1,7 @@
+{
+    "statusCode": 422,
+    "headers": {
+        "content-type": "application\/json"
+    },
+    "data": "{\"detail\":\"The given file is not supported. Expected [application/pdf] found [application/vnd.openxmlformats-officedocument.wordprocessingml.document].\"}"
+}

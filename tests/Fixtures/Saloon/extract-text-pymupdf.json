@@ -1,0 +1,7 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "content-type": "application\/json"
+    },
+    "data": "{\"category\":\"doc\", \"attributes\": null,\"content\":[{\"category\":\"page\",\"attributes\":{\"page\":1},\"content\":[{\"role\":\"body\",\"text\":\"Type of document \/ Offer \/ Contract \/ Report This is the title of the document, it can use multiple lines and grow a bit Subtitle of the document OneOff-Tech\",\"marks\":[],\"attributes\":{\"bounding_box\":[]}}]},{\"category\":\"page\",\"attributes\":{\"page\":2},\"content\":[{\"role\":\"body\",\"text\":\"Section Heading 1 First chapter This is an example text.\",\"marks\":[],\"attributes\":{\"bounding_box\":[]}}]}]}"
+}
