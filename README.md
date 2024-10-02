@@ -38,7 +38,7 @@ $client = new ParseConnector(baseUrl: "http://localhost:5000");
 $document = $client->parse("https://domain.internal/document.pdf");
 ```
 
-> [!INFO]  
+> [!NOTE] 
 > - The URL of the document must be accessible without authentication.
 > - Documents are downloaded for the time of processing and then the file is immediately deleted.
 
@@ -56,7 +56,7 @@ $client = new ParseConnector("token");
 $document = $client->parse("https://domain.internal/document.pdf");
 ```
 
-> [!INFO]  
+> [!NOTE] 
 > - The URL of the document must be accessible without authentication.
 > - Documents are downloaded for the time of processing and then the file is immediately deleted.
 
