@@ -1,8 +1,8 @@
 # OneOffTech Parse client
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/oneofftech/oneofftech-parse-client.svg?style=flat-square)](https://packagist.org/packages/oneofftech/oneofftech-parse-client)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/oneofftech/parse-client.svg?style=flat-square)](https://packagist.org/packages/oneofftech/parse-client)
 [![Tests](https://github.com/OneOffTech/parse-client/actions/workflows/run-tests.yml/badge.svg)](https://github.com/OneOffTech/parse-client/actions/workflows/run-tests.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/oneofftech/oneofftech-parse-client.svg?style=flat-square)](https://packagist.org/packages/oneofftech/oneofftech-parse-client)
+[![Total Downloads](https://img.shields.io/packagist/dt/oneofftech/parse-client.svg?style=flat-square)](https://packagist.org/packages/oneofftech/parse-client)
 
 Parse client is a library to interact with [OneOffTech Parse](https://parse.oneofftech.de) service. OneOffTech Parse is designed to extract text from PDF files preserving the [structure of the document](#document-structure) to improve interaction with Large Language Models (LLMs).
 
