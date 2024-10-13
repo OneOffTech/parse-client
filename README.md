@@ -27,7 +27,7 @@ The Parse client is able to connect to self-hosted instances of the [PDF Text ex
 
 ### Use with self-hosted instance
 
-Before proceeding a running instance of the [PDF Text extractor](https://github.com/data-house/pdf-text-extractor) is required. Once you have a running instance create an instance of the connector client passing the url on which your instance is listening.
+Before proceeding a running instance of the [PDF Text extractor](https://github.com/data-house/pdf-text-extractor) is required. Once you have a running instance, you can instantiate the connector by passing the url that the extractor service is listening on.
 
 ```php
 use OneOffTech\Parse\Client\Connectors\ParseConnector;
@@ -44,6 +44,9 @@ $document = $client->parse("https://domain.internal/document.pdf");
 
 
 ### Use the cloud hosted service
+
+> [!IMPORTANT]
+> The cloud hosted service is currently in private beta. [Drop us a message](https://oneofftech.de/).
 
 Go to [parse.oneofftech.de](https://parse.oneofftech.de) and obtain an access token. Instantiate the client and provide a URL of a PDF document. 
 
