@@ -45,7 +45,7 @@ test('node created from string', function () {
 
     expect($pages)
         ->toHaveCount(1);
-    
+
     expect($document->toArray())
         ->toEqual($expectedContent);
 
