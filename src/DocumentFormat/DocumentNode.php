@@ -3,12 +3,14 @@
 namespace OneOffTech\Parse\Client\DocumentFormat;
 
 use Countable;
+use JsonSerializable;
 use OneOffTech\Parse\Client\Exceptions\EmptyDocumentException;
 use OneOffTech\Parse\Client\Exceptions\InvalidDocumentFormatException;
 use RecursiveArrayIterator;
 use RecursiveIteratorIterator;
+use ReturnTypeWillChange;
 
-class DocumentNode implements Countable
+class DocumentNode implements Countable, JsonSerializable
 {
     public function __construct(
         public readonly array $content,
@@ -42,7 +44,7 @@ class DocumentNode implements Countable
     public function hasContent(): bool
     {
         foreach (new RecursiveIteratorIterator(new RecursiveArrayIterator($this->content), RecursiveIteratorIterator::LEAVES_ONLY) as $key => $value) {
-            if ($key === 'text' && ! empty($value)) {
+            if (($key === 'text' || $key === 'content') && ! empty($value)) {
                 return true;
             }
         }
@@ -65,7 +67,7 @@ class DocumentNode implements Countable
         $text = [];
 
         foreach (new RecursiveIteratorIterator(new RecursiveArrayIterator($this->content), RecursiveIteratorIterator::LEAVES_ONLY) as $key => $value) {
-            if ($key === 'text' && ! empty($value)) {
+            if (($key === 'text' || $key === 'content') && ! empty($value)) {
                 $text[] = $value;
             }
         }
@@ -88,6 +90,33 @@ class DocumentNode implements Countable
     }
 
     /**
+     * Return an array representation of the document node
+     */
+    public function toArray(): array
+    {
+        return [
+            'category' => 'doc',
+            'attributes' => null,
+            'content' => $this->content
+        ];
+    }
+    
+    /**
+     * Return a JSON serialization of the document node
+     */
+    public function toJson(): string
+    {
+        return json_encode($this);
+    }
+
+    #[ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return $this->toArray();
+    }
+
+
+    /**
      * Create a document node from associative array
      */
     public static function fromArray(array $data): DocumentNode
@@ -105,5 +134,30 @@ class DocumentNode implements Countable
         }
 
         return new DocumentNode($data['content'] ?? [], $data['attributes'] ?? []);
+    }
+
+    public static function fromString(string $data): DocumentNode
+    {
+        return static::fromArray([
+            'category' => 'doc',
+            'attributes' => null,
+            'content' => [
+                [
+                    'category' => 'page',
+                    'attributes' => [
+                        'page' => 1,
+                    ],
+                    'content' => [
+                        [
+                            'role' => 'body',
+                            'category' => 'text',
+                            'content' => $data,
+                            'marks' => [],
+                            'attributes' => [],
+                        ]
+                    ]
+                ]
+            ]
+        ]);
     }
 }
