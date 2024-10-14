@@ -6,8 +6,28 @@ use OneOffTech\Parse\Client\Exceptions\InvalidDocumentFormatException;
 
 test('node created from string', function () {
 
-    $document = DocumentNode::fromString('test content');
+    $expectedContent = [
+        'category' => 'doc',
+        'attributes' => null,
+        'content' => [
+            [
+                'category' => 'page',
+                'attributes' => [
+                    'page' => 1,
+                ],
+                'content' => [
+                    [
+                        'category' => 'body',
+                        'content' => 'test content',
+                        'marks' => [],
+                        'attributes' => [],
+                    ],
+                ],
+            ],
+        ],
+    ];
 
+    $document = DocumentNode::fromString('test content');
     expect($document)
         ->toBeInstanceOf(DocumentNode::class)
         ->toHaveCount(1);
@@ -25,6 +45,9 @@ test('node created from string', function () {
 
     expect($pages)
         ->toHaveCount(1);
+    
+    expect($document->toArray())
+        ->toEqual($expectedContent);
 
 });
 
@@ -40,8 +63,7 @@ test('node created from array', function () {
                 ],
                 'content' => [
                     [
-                        'role' => 'body',
-                        'category' => 'text',
+                        'category' => 'body',
                         'content' => 'This is the page one text',
                         'marks' => [],
                         'attributes' => [],
@@ -86,8 +108,7 @@ test('throws if missing category', function () {
                 ],
                 'content' => [
                     [
-                        'role' => 'body',
-                        'category' => 'text',
+                        'category' => 'body',
                         'content' => 'This is the page one text',
                         'marks' => [],
                         'attributes' => [],
@@ -119,8 +140,7 @@ test('throws if category is not doc', function () {
                 ],
                 'content' => [
                     [
-                        'role' => 'body',
-                        'category' => 'text',
+                        'category' => 'body',
                         'content' => 'This is the page one text',
                         'marks' => [],
                         'attributes' => [],
@@ -154,8 +174,7 @@ test('can be serialized in json', function () {
                 ],
                 'content' => [
                     [
-                        'role' => 'body',
-                        'category' => 'text',
+                        'category' => 'body',
                         'content' => 'This is the page one text',
                         'marks' => [],
                         'attributes' => [],

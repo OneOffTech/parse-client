@@ -148,8 +148,7 @@ class DocumentNode implements Countable, JsonSerializable
                     ],
                     'content' => [
                         [
-                            'role' => 'body',
-                            'category' => 'text',
+                            'category' => 'body',
                             'content' => $data,
                             'marks' => [],
                             'attributes' => [],
