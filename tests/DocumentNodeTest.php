@@ -5,7 +5,7 @@ use OneOffTech\Parse\Client\Exceptions\EmptyDocumentException;
 use OneOffTech\Parse\Client\Exceptions\InvalidDocumentFormatException;
 
 test('node created from string', function () {
-    
+
     $document = DocumentNode::fromString('test content');
 
     expect($document)
@@ -45,10 +45,10 @@ test('node created from array', function () {
                         'content' => 'This is the page one text',
                         'marks' => [],
                         'attributes' => [],
-                    ]
-                ]
-            ]
-        ]
+                    ],
+                ],
+            ],
+        ],
     ]);
 
     expect($document)
@@ -91,10 +91,10 @@ test('throws if missing category', function () {
                         'content' => 'This is the page one text',
                         'marks' => [],
                         'attributes' => [],
-                    ]
-                ]
-            ]
-        ]
+                    ],
+                ],
+            ],
+        ],
     ]);
 
 })->throws(InvalidDocumentFormatException::class, 'Unexpected document structure. Missing category or content.');
@@ -124,10 +124,10 @@ test('throws if category is not doc', function () {
                         'content' => 'This is the page one text',
                         'marks' => [],
                         'attributes' => [],
-                    ]
-                ]
-            ]
-        ]
+                    ],
+                ],
+            ],
+        ],
     ]);
 
 })->throws(InvalidDocumentFormatException::class, 'Unexpected node category. Expecting [doc] found [something].');
@@ -136,11 +136,10 @@ test('throws if content is not an array', function () {
     DocumentNode::fromArray([
         'category' => 'doc',
         'attributes' => null,
-        'content' => 'a string'
+        'content' => 'a string',
     ]);
 
 })->throws(InvalidDocumentFormatException::class, 'Unexpected content format. Expecting [array].');
-
 
 test('can be serialized in json', function () {
 
@@ -160,10 +159,10 @@ test('can be serialized in json', function () {
                         'content' => 'This is the page one text',
                         'marks' => [],
                         'attributes' => [],
-                    ]
-                ]
-            ]
-        ]
+                    ],
+                ],
+            ],
+        ],
     ];
 
     $document = DocumentNode::fromArray($expectedContent);

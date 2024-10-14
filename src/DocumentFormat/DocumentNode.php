@@ -97,10 +97,10 @@ class DocumentNode implements Countable, JsonSerializable
         return [
             'category' => 'doc',
             'attributes' => null,
-            'content' => $this->content
+            'content' => $this->content,
         ];
     }
-    
+
     /**
      * Return a JSON serialization of the document node
      */
@@ -114,7 +114,6 @@ class DocumentNode implements Countable, JsonSerializable
     {
         return $this->toArray();
     }
-
 
     /**
      * Create a document node from associative array
@@ -154,10 +153,10 @@ class DocumentNode implements Countable, JsonSerializable
                             'content' => $data,
                             'marks' => [],
                             'attributes' => [],
-                        ]
-                    ]
-                ]
-            ]
+                        ],
+                    ],
+                ],
+            ],
         ]);
     }
 }
