@@ -7,7 +7,7 @@ use Saloon\Http\Faking\MockResponse;
 
 test('url required to be non-empty', function () {
     $mockClient = MockClient::global([
-        ExtractTextRequest::class => MockResponse::fixture('extract-text-invalid-param'),
+        ExtractTextRequest::class => MockResponse::fixture('extract-text-invalid-url'),
     ]);
 
     $connector = new ParseConnector('fake', 'http://localhost:5002');
@@ -21,7 +21,7 @@ test('url required to be non-empty', function () {
 
 test('mime type required to be non-null', function () {
     $mockClient = MockClient::global([
-        ExtractTextRequest::class => MockResponse::fixture('extract-text-invalid-param'),
+        ExtractTextRequest::class => MockResponse::fixture('extract-text-invalid-mime'),
     ]);
 
     $connector = new ParseConnector('fake', 'http://localhost:5002');
