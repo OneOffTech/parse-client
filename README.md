@@ -6,7 +6,7 @@
 
 Parse client is a library to interact with [OneOffTech Parse](https://parse.oneofftech.de) service. OneOffTech Parse is designed to extract text from PDF files preserving the [structure of the document](#document-structure) to improve interaction with Large Language Models (LLMs).
 
-OneOffTech Parse is based on [PDF Text extractor](https://github.com/data-house/pdf-text-extractor). The client is suitable to connect to self-hosted versions of the [PDF Text extractor](https://github.com/data-house/pdf-text-extractor).
+OneOffTech Parse is based on [Parxy extractor](https://github.com/OneOffTech/parxy). The client is also suitable to connect to self-hosted versions of [Parxy](https://github.com/OneOffTech/parxy).
 
 
 > [!NOTE]
@@ -23,11 +23,11 @@ composer require oneofftech/parse-client
 
 ## Usage
 
-The Parse client is able to connect to self-hosted instances of the [PDF Text extractor](https://github.com/data-house/pdf-text-extractor) service or the cloud hosted [OneOffTech Parse](https://parse.oneofftech.de) service.
+The Parse client is able to connect to self-hosted instances of the [Parxy](https://github.com/OneOffTech/parxy) extractor service or the cloud hosted [OneOffTech Parse](https://parse.oneofftech.de) service.
 
 ### Use with self-hosted instance
 
-Before proceeding a running instance of the [PDF Text extractor](https://github.com/data-house/pdf-text-extractor) is required. Once you have a running instance, you can instantiate the connector by passing the url that the extractor service is listening on.
+Before proceeding a running instance of [Parxy](https://github.com/OneOffTech/parxy) is required. Once you have a running instance, you can instantiate the connector by passing the url that the extractor service is listening on.
 
 ```php
 use OneOffTech\Parse\Client\Connectors\ParseConnector;
@@ -66,7 +66,7 @@ $document = $client->parse("https://domain.internal/document.pdf");
 
 ### Specify the preferred extraction method
 
-Parse service supports different processors, [`pymupdf`](https://github.com/pymupdf/PyMuPDF) or [`pdfact`](https://github.com/data-house/pdfact). You can specify the preferred processor for each request.
+Parse service supports different processors, [`pymupdf`](https://github.com/pymupdf/PyMuPDF) or [`pdfact`](https://github.com/data-house/pdfact), [`unstructured`](https://unstructured.io/) and [`llamaparse`](https://docs.cloud.llamaindex.ai/llamaparse/getting_started). You can specify the preferred processor for each request.
 
 ```php
 use OneOffTech\Parse\Client\ParseOption;
