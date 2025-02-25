@@ -24,4 +24,11 @@ enum DocumentProcessor: string
      * Uses LLamaCloud https://cloud.llamaindex.ai/ as document processor to extract text
      */
     case LLAMAPARSE = 'llama';
+
+    /**
+     * The Unstructured processor
+     *
+     * Uses Unstructored https://unstructured.io/ as document processor to extract text
+     */
+    case UNSTRUCTURED = 'unstructured';
 }
