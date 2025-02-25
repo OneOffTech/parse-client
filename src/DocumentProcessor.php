@@ -17,4 +17,11 @@ enum DocumentProcessor: string
      * Uses https://github.com/pymupdf/PyMuPDF as document processor to extract text
      */
     case PYMUPDF = 'pymupdf';
+
+    /**
+     * The LLama Parse processor
+     *
+     * Uses LLamaCloud https://cloud.llamaindex.ai/ as document processor to extract text
+     */
+    case LLAMAPARSE = 'llama';
 }
