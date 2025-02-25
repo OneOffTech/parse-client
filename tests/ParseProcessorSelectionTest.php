@@ -99,3 +99,34 @@ test('llamaparse can be selected as processor', function () {
 
     $mockClient->assertSentCount(1);
 });
+
+test('unstructured can be selected as processor', function () {
+    $mockClient = MockClient::global([
+        ExtractTextRequest::class => MockResponse::fixture('extract-text-empty'),
+    ]);
+
+    $connector = new ParseConnector('fake', 'http://localhost:5002');
+    $connector->withMockClient($mockClient);
+
+    $connector->parse(
+        url: 'http://localhost/empty.pdf',
+        options: new ParseOption(DocumentProcessor::UNSTRUCTURED),
+    );
+
+    $mockClient->assertSent(ExtractTextRequest::class);
+
+    $mockClient->assertSent(function (Request $request, Response $response) {
+        if (! $request instanceof ExtractTextRequest) {
+            return false;
+        }
+
+        /** @var array */
+        $body = $request->body()->all();
+
+        return $body['url'] === 'http://localhost/empty.pdf'
+            && $body['mime_type'] === 'application/pdf'
+            && $body['driver'] === 'unstructured';
+    });
+
+    $mockClient->assertSentCount(1);
+});
