@@ -76,12 +76,11 @@ class ParseConnector extends Connector
      * @param  string  $mimeType  The mime type of the document. Default application/pdf
      * @param  \OneOffTech\Parse\Client\ParseOption  $options  Specifiy additional options for the specific parsing processor
      */
-    public function parse(string $url, string $mimeType = 'application/pdf', ?ParseOption $options = null): DocumentDto
+    public function parse(string $url, ?ParseOption $options = null): DocumentDto
     {
         return $this
             ->send((new ExtractTextRequest(
                 url: $url,
-                mimeType: $mimeType,
                 preferredDocumentProcessor: $options?->processor?->value ?? DocumentProcessor::PDFACT->value,
             ))->validate())
             ->dto();

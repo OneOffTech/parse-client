@@ -20,7 +20,7 @@ test('can parse a pdf using pdfact', function () {
     $connector = new ParseConnector('fake', 'http://localhost:5002');
     $connector->withMockClient($mockClient);
 
-    $document = $connector->parse('http://localhost/base.pdf', 'application/pdf');
+    $document = $connector->parse('http://localhost/base.pdf');
 
     expect($document)
         ->toBeInstanceOf(DocumentDto::class)
@@ -63,7 +63,7 @@ test('can parse a pdf using pymupdf', function () {
     $connector = new ParseConnector('fake', 'http://localhost:5002');
     $connector->withMockClient($mockClient);
 
-    $document = $connector->parse('http://localhost/base.pdf', 'application/pdf', new ParseOption(DocumentProcessor::PYMUPDF));
+    $document = $connector->parse('http://localhost/base.pdf', new ParseOption(DocumentProcessor::PYMUPDF));
 
     expect($document)
         ->toBeInstanceOf(DocumentDto::class)
@@ -91,7 +91,7 @@ test('can parse an empty pdf', function () {
     $connector = new ParseConnector('fake', 'http://localhost:5002');
     $connector->withMockClient(MockClient::getGlobal());
 
-    $document = $connector->parse('http://localhost/empty.pdf', 'application/pdf');
+    $document = $connector->parse('http://localhost/empty.pdf');
 
     expect($document)
         ->toBeInstanceOf(DocumentDto::class)
@@ -113,7 +113,7 @@ test('can parse an empty pdf', function () {
         /** @var array */
         $body = $request->body()->all();
 
-        return $body['url'] === 'http://localhost/empty.pdf' && $body['mime_type'] === 'application/pdf';
+        return $body['url'] === 'http://localhost/empty.pdf';
     });
 
     $mockClient->assertSentCount(1);
@@ -140,7 +140,7 @@ test('cannot parse file types other than pdf', function () {
         /** @var array */
         $body = $request->body()->all();
 
-        return $body['url'] === 'http://localhost/base.docx' && $body['mime_type'] === 'application/pdf';
+        return $body['url'] === 'http://localhost/base.docx';
     });
 
     $mockClient->assertSentCount(1);
@@ -155,7 +155,7 @@ test('handle non existing files', function () {
     $connector = new ParseConnector('fake', 'http://localhost:5002');
     $connector->withMockClient(MockClient::getGlobal());
 
-    $connector->parse('http://localhost/test.pdf', 'application/pdf');
+    $connector->parse('http://localhost/test.pdf');
 
     $mockClient->assertSent(ExtractTextRequest::class);
 
@@ -167,7 +167,7 @@ test('handle non existing files', function () {
         /** @var array */
         $body = $request->body()->all();
 
-        return $body['url'] === 'http://localhost/test.pdf' && $body['mime_type'] === 'application/pdf';
+        return $body['url'] === 'http://localhost/test.pdf';
     });
 
     $mockClient->assertSentCount(1);
@@ -182,6 +182,6 @@ test('handle pdfact not available', function () {
     $connector = new ParseConnector('fake', 'http://localhost:5002');
     $connector->withMockClient($mockClient);
 
-    $connector->parse('http://localhost/km-f.pdf', 'application/pdf');
+    $connector->parse('http://localhost/km-f.pdf');
 
 })->throws(ServiceUnavailableException::class, 'The pdfact service is not reachable.');

@@ -30,7 +30,6 @@ test('ensure pdfact is selected as processor', function () {
         $body = $request->body()->all();
 
         return $body['url'] === 'http://localhost/empty.pdf'
-            && $body['mime_type'] === 'application/pdf'
             && $body['driver'] === 'pdfact';
     });
 
@@ -62,7 +61,6 @@ test('ensure pymupdf is selected as processor', function () {
         $body = $request->body()->all();
 
         return $body['url'] === 'http://localhost/empty.pdf'
-            && $body['mime_type'] === 'application/pdf'
             && $body['driver'] === 'pymupdf';
     });
 
@@ -93,7 +91,6 @@ test('llamaparse can be selected as processor', function () {
         $body = $request->body()->all();
 
         return $body['url'] === 'http://localhost/empty.pdf'
-            && $body['mime_type'] === 'application/pdf'
             && $body['driver'] === 'llama';
     });
 
@@ -124,7 +121,6 @@ test('unstructured can be selected as processor', function () {
         $body = $request->body()->all();
 
         return $body['url'] === 'http://localhost/empty.pdf'
-            && $body['mime_type'] === 'application/pdf'
             && $body['driver'] === 'unstructured';
     });
 
