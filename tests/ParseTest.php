@@ -172,7 +172,7 @@ test('handle non existing files', function () {
 
     $mockClient->assertSentCount(1);
 
-})->throws(UnprocessableEntityException::class, 'File not found at given url.');
+})->throws(UnprocessableEntityException::class, 'Unprocessable Entity (422) Response: {"detail":"Unsupported mime type \'text/html\'. Expecting application/pdf."}');
 
 test('handle pdfact not available', function () {
     $mockClient = MockClient::global([

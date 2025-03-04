@@ -3,5 +3,5 @@
     "headers": {
         "content-type": "application\/json"
     },
-    "data": "{\"detail\":\"File not found at given url.\"}"
+    "data": "{\"detail\":\"Unsupported mime type 'text\/html'. Expecting application\/pdf.\"}"
 }
